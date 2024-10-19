@@ -1,4 +1,4 @@
-package PatternsDesign.creational.factorymethod;
+package patternsdesign.creational.factorymethod;
 
 public enum TypePayment {
     CARD,
