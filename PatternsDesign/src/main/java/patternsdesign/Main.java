@@ -8,7 +8,11 @@ import patternsdesign.creational.builder.CardUser;
 import patternsdesign.creational.factorymethod.Payment;
 import patternsdesign.creational.factorymethod.PaymentFactory;
 import patternsdesign.creational.factorymethod.TypePayment;
+import patternsdesign.creational.prototype.AmericanExpressPrototype;
+import patternsdesign.creational.prototype.PrototypeCard;
+import patternsdesign.creational.prototype.PrototypeFactory;
 
+import static patternsdesign.Util.AMEX;
 import static patternsdesign.Util.CARD;
 import static patternsdesign.Util.VISA;
 import static patternsdesign.Util.PAYMENT_METHOD;
@@ -20,14 +24,15 @@ public class Main {
         probarFactoryMethod();
         probarAbstractFactoryMethod();
         probarBuilder();
+        probarPrototype();
     }
 
-    private static void probarFactoryMethod(){
+    private static void probarFactoryMethod() {
         Payment payment = PaymentFactory.buildPayment(TypePayment.CARD);
         System.out.println("Metodo de pago: " + payment.doPayment());
     }
 
-    private static void probarAbstractFactoryMethod(){
+    private static void probarAbstractFactoryMethod() {
         AbstractFactory abstractFactoryCard = FactoryProvider.getFactory(CARD);
         Card card = (Card) abstractFactoryCard.create(VISA);
 
@@ -37,8 +42,8 @@ public class Main {
         System.out.println("Card de tipo: " + card.getCardType() + ", con el tipo de pago: " + paymentMethod.doPayment());
     }
 
-    private static void probarBuilder(){
-        CardUser card = new CardUser.CardBuilder(VISA,CARD_NUMBER)
+    private static void probarBuilder() {
+        CardUser card = new CardUser.CardBuilder(VISA, CARD_NUMBER)
                 .credit(true)
                 .name("Walter Nahuel Barrios")
                 .expires(2030)
@@ -46,4 +51,20 @@ public class Main {
         System.out.println(card.toString());
     }
 
+    private static void probarPrototype() {
+        //Es mucho mas eficiente clonar un objeto a crearlo.
+        PrototypeFactory.loadCard();
+
+        try {
+            PrototypeCard americanExpressPrototype = PrototypeFactory.getInstance(AMEX);
+            americanExpressPrototype.getCard();
+
+            PrototypeCard visaPrototype = PrototypeFactory.getInstance(VISA);
+            visaPrototype.getCard();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+
+
+    }
 }
