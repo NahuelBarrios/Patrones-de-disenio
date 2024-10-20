@@ -1,9 +1,9 @@
 package patternsdesign.creational.abstractfactory;
 
-public class FactoryProvider {
-    private static final String CARD = "Card";
-    private static final String PAYMENT_METHOD = "PaymentMethod";
+import static patternsdesign.Util.CARD;
+import static patternsdesign.Util.PAYMENT_METHOD;
 
+public class FactoryProvider {
     private FactoryProvider(){}
     public static AbstractFactory getFactory(String chooseFactory){
         if(CARD.equals(chooseFactory))

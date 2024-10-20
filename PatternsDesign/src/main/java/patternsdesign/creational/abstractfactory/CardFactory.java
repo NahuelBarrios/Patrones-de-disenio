@@ -1,9 +1,9 @@
 package patternsdesign.creational.abstractfactory;
 
-public class CardFactory implements AbstractFactory<Card>{
-    private static final String VISA = "VISA";
-    private static final String MASTERCARD = "MASTERCARD";
+import static patternsdesign.Util.MASTERCARD;
+import static patternsdesign.Util.VISA;
 
+public class CardFactory implements AbstractFactory<Card>{
     @Override
     public Card create(String type) {
         if(VISA.equals(type))

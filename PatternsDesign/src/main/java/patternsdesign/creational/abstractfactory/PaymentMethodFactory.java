@@ -1,14 +1,14 @@
 package patternsdesign.creational.abstractfactory;
 
-public class PaymentMethodFactory implements AbstractFactory<PaymentMethod>{
+import static patternsdesign.Util.CREDIT_CARD;
+import static patternsdesign.Util.DEBIT_CARD;
 
-    private static final String DEBIT = "DebitCard";
-    private static final String CREDIT = "CreditCard";
+public class PaymentMethodFactory implements AbstractFactory<PaymentMethod>{
     @Override
     public PaymentMethod create(String type) {
-        if(DEBIT.equals(type))
+        if(DEBIT_CARD.equals(type))
             return new Debit();
-        else if (CREDIT.equals(type))
+        else if (CREDIT_CARD.equals(type))
             return new Credit();
 
         return null;

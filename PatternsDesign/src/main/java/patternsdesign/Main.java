@@ -4,14 +4,22 @@ import patternsdesign.creational.abstractfactory.AbstractFactory;
 import patternsdesign.creational.abstractfactory.Card;
 import patternsdesign.creational.abstractfactory.FactoryProvider;
 import patternsdesign.creational.abstractfactory.PaymentMethod;
+import patternsdesign.creational.builder.CardUser;
 import patternsdesign.creational.factorymethod.Payment;
 import patternsdesign.creational.factorymethod.PaymentFactory;
 import patternsdesign.creational.factorymethod.TypePayment;
+
+import static patternsdesign.Util.CARD;
+import static patternsdesign.Util.VISA;
+import static patternsdesign.Util.PAYMENT_METHOD;
+import static patternsdesign.Util.DEBIT_CARD;
+import static patternsdesign.Util.CARD_NUMBER;
 
 public class Main {
     public static void main(String[] args) {
         probarFactoryMethod();
         probarAbstractFactoryMethod();
+        probarBuilder();
     }
 
     private static void probarFactoryMethod(){
@@ -20,13 +28,22 @@ public class Main {
     }
 
     private static void probarAbstractFactoryMethod(){
-        AbstractFactory abstractFactoryCard = FactoryProvider.getFactory("Card");
-        Card card = (Card) abstractFactoryCard.create("VISA");
+        AbstractFactory abstractFactoryCard = FactoryProvider.getFactory(CARD);
+        Card card = (Card) abstractFactoryCard.create(VISA);
 
-        AbstractFactory abstractFactoryPaymentMethod = FactoryProvider.getFactory("PaymentMethod");
-        PaymentMethod paymentMethod = (PaymentMethod) abstractFactoryPaymentMethod.create("DebitCard");
+        AbstractFactory abstractFactoryPaymentMethod = FactoryProvider.getFactory(PAYMENT_METHOD);
+        PaymentMethod paymentMethod = (PaymentMethod) abstractFactoryPaymentMethod.create(DEBIT_CARD);
 
         System.out.println("Card de tipo: " + card.getCardType() + ", con el tipo de pago: " + paymentMethod.doPayment());
+    }
+
+    private static void probarBuilder(){
+        CardUser card = new CardUser.CardBuilder(VISA,CARD_NUMBER)
+                .credit(true)
+                .name("Walter Nahuel Barrios")
+                .expires(2030)
+                .build();
+        System.out.println(card.toString());
     }
 
 }

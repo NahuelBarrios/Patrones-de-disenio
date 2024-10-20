@@ -1,13 +1,16 @@
 package patternsdesign.creational.abstractfactory;
 
+import static patternsdesign.Util.CARD_NUMBER;
+import static patternsdesign.Util.VISA;
+
 public class Visa implements Card{
     @Override
     public String getCardType() {
-        return "VISA";
+        return VISA;
     }
 
     @Override
     public String getCardNumber() {
-        return "0001 0002 0003 0004";
+        return CARD_NUMBER;
     }
 }

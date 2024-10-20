@@ -1,8 +1,10 @@
 package patternsdesign.creational.abstractfactory;
 
+import static patternsdesign.Util.CREDIT_CARD;
+
 public class Credit implements PaymentMethod{
     @Override
     public String doPayment() {
-        return "CreditCard";
+        return CREDIT_CARD;
     }
 }
