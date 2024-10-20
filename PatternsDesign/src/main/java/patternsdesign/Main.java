@@ -8,9 +8,9 @@ import patternsdesign.creational.builder.CardUser;
 import patternsdesign.creational.factorymethod.Payment;
 import patternsdesign.creational.factorymethod.PaymentFactory;
 import patternsdesign.creational.factorymethod.TypePayment;
-import patternsdesign.creational.prototype.AmericanExpressPrototype;
 import patternsdesign.creational.prototype.PrototypeCard;
 import patternsdesign.creational.prototype.PrototypeFactory;
+import patternsdesign.creational.singleton.CardSingleton;
 
 import static patternsdesign.Util.AMEX;
 import static patternsdesign.Util.CARD;
@@ -25,6 +25,7 @@ public class Main {
         probarAbstractFactoryMethod();
         probarBuilder();
         probarPrototype();
+        probarSingleton();
     }
 
     private static void probarFactoryMethod() {
@@ -64,7 +65,12 @@ public class Main {
         } catch (CloneNotSupportedException e) {
             e.printStackTrace();
         }
+    }
 
+    private static void probarSingleton(){
+        CardSingleton cardSingletonVisa = CardSingleton.getInstance();
+        cardSingletonVisa.setName(VISA);
 
+        System.out.println("cardSingletonVisa: " + cardSingletonVisa.getName());
     }
 }
